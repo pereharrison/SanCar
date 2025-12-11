@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.home-header {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+}
+
+.header-title {
+  font-size: 4.5rem;
+  font-weight: 800;
+}
+
+.highlight {
+  color: #1e40af;
+  font-style: italic;
+}
+
+.header-sub {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  color: #4b5563;
+}
+
+.header-cta {
+  margin-top: 3rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 1em 2.5em;
+  background-color: #1e40af;
+  color: white;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  background-color: #1d4ed8;
+  color: #93c5fd;
+  transform: translateY(-3px);
+}
+
+/* Trust Stats */
+.trust-stat {
+  padding: 4rem 2rem;
+  background-color: #f1f5f9;
+}
+
+.stats-list {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+  padding: 2rem;
+  min-width: 200px;
+}
+
+.stat-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #1e40af;
+}
+
+.stat-sub {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 0.5rem;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;          
+  padding: 0 2rem;
+}
+
+.featured-cars {
+  padding: 4rem 0;
+  background-color: #f8fafc;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2.5rem;
+  justify-items: center;   /* ← centers each card inside its grid cell */
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-title { font-size: 2.8rem; }
+  .header-sub { font-size: 1.1rem; }
+  .cta-btn { font-size: 1.4rem; padding: 0.8em 2em; }
+  .stats-list { flex-direction: column; align-items: center; gap: 2rem; }
+  .stat-number { font-size: 3rem; }
+  .cars-grid { grid-template-columns: 1fr; }
+}

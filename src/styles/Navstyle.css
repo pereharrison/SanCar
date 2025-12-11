@@ -1,0 +1,77 @@
+.nav-contain {
+  position: sticky;
+  top: 0;
+  background-color: #1e40af;
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.logo a {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.links-container {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.links-container a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.links-container a:hover {
+  color: #93c5fd;
+}
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .links-container {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: #1e40af;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    display: none;                  /* ← hidden by default */
+    transform: none;                /* remove transform */
+    }
+
+  .links-container.open {
+    display: flex;                  /* ← show when open */
+  }
+}

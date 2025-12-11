@@ -1,0 +1,37 @@
+.car-details-container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.car-image img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.car-info h1 { font-size: 3rem; margin-bottom: 1rem; }
+.price { font-size: 2.5rem; font-weight: bold; color: #1e40af; }
+.price span { font-size: 1.2rem; color: #666; }
+
+.specs { margin: 2rem 0; line-height: 2; }
+.rent-btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background: #1e40af;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+.back-link { color: color #666; text-decoration: none; }
+
+@media (max-width: 768px) {
+  .car-details-container { grid-template-columns: 1fr; }
+}

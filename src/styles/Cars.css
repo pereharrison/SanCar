@@ -1,0 +1,17 @@
+.container {
+  max-width: 1400px;
+  margin: 0 auto;          
+  padding: 0 2rem;
+}
+
+.featured-cars {
+  padding: 4rem 0;
+  background-color: #f8fafc;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2.5rem;
+  justify-items: center;   /* ← centers each card inside its grid cell */
+}
