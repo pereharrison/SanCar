@@ -44,10 +44,9 @@ function RentCar() {
       return;
     }
 
-    // THIS IS THE ONLY CHANGE YOU NEED — ADD carImage
     const booking = {
       carName: car.name,
-      carImage: car.image,     // ← THIS LINE WAS MISSING
+      carImage: car.image,
       startDate,
       endDate,
       days,
