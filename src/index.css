@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -12,41 +12,41 @@ code {
     monospace;
 }
 /* Put this in a global CSS file (e.g. src/index.css or App.css) once */
-* {
+/* * {
   box-sizing: border-box;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;            /* side padding on small screens */
-}
+  padding: 0 1rem;            
+} */
 
 /* Flex that automatically stacks on mobile */
-.flex-row {
+/* .flex-row {
   display: flex;
-  flex-wrap: wrap;            /* this line does the magic */
+  flex-wrap: wrap;            
   gap: 2rem;
   justify-content: center;
-}
+} */
 
 /* Grid that becomes 1 column on phone */
-.grid-3 {
+/* .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-}
+} */
 
 /* Media query for phones & tablets */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .grid-3 {
     grid-template-columns: 1fr;                /* 1 column on phone */
   }
   
-  .flex-row {
-    flex-direction: column;                    /* stacks vertically */
-  }
+  /* .flex-row {
+    flex-direction: column;                 
+  } 
   
   h1 { font-size: 2.5rem; }
   h2 { font-size: 1.8rem; }
-}
+} */
