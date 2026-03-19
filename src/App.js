@@ -6,7 +6,7 @@ import CarDetails from './pages/CarDetails';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import RentCar from './pages/Rentcar';
-import MyBookings from './pages/Booking';
+import Booking from './pages/Booking';
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/rent/:id" element={<RentCar />} />
-        <Route path="/my-bookings" element={<MyBookings />} />
+        <Route path="/my-bookings" element={<Booking />} />
       </Routes>
     </Router>
     </AuthProvider>

@@ -1,100 +1,75 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import "../styles/Signup.css";
+import "../styles/Auth.css"
 
 function Signup() {
+  const { signup } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    // get signup() function from AuthContext
-    const { signup } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
 
-    // correct useNavigate
-    const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    // states for input fields
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    if (password !== confirm) {
+      alert("Passwords do not match");
+      return;
+    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    if (users.find(u => u.email === email)) {
+      alert("Email already exists");
+      return;
+    }
 
-        // 1. password match
-        if (password !== confirmPassword) {
-            alert("Passwords do not match");
-            return;
-        }
+    const newUser = { email, password };
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
 
-        // 2. check for existing email
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-        const exists = users.find(u => u.email === email);
+    signup(newUser);
+    navigate("/");
+  };
 
-        if (exists) {
-            alert("Email already exists");
-            return;
-        }
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2>Sign Up</h2>
+        <p>Join SanCar Rentals</p>
 
-        // 3. create new user object
-        const newUser = {
-            id: Date.now(),
-            email,
-            password,
-        };
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            required
+          />
+          <button type="submit">Sign Up</button>
+        </form>
 
-        // 4. save to localStorage
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-
-        // 5. LOGIN user in AuthContext
-        signup(newUser);
-
-        // 6. redirect to homepage
-        navigate("/");
-    };
-
-
-    return (
-  <div className="signup-container">
-    <div className="signup-card">
-      <h2>Create Account</h2>
-      <p>Join SanCar Rentals today</p>
-
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <input
-          className="signup-input"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email address"
-          required
-        />
-        <input
-          className="signup-input"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <input
-          className="signup-input"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirm Password"
-          required
-        />
-        <button className="signup-btn" type="submit">
-          Sign Up
-        </button>
-      </form>
-
-      <div className="signup-footer">
-        Already have an account? <Link to="/signin">Sign In</Link>
+        <p style={{ marginTop: "20px" }}>
+          Have an account? <Link to="/signin">Sign In</Link>
+        </p>
       </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Signup;

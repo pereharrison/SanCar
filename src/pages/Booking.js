@@ -1,62 +1,45 @@
-// src/pages/MyBookings.js
 import { useState, useEffect } from "react";
-import "../styles/Bookings.css";
 
 function MyBookings() {
   const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const saved = localStorage.getItem("bookings");
-    if (saved) {
-      setBookings(JSON.parse(saved));
+    const data = localStorage.getItem("bookings");
+    if (data) {
+      setBookings(JSON.parse(data));
     }
-    setLoading(false);
   }, []);
-
-  if (loading) {
-    return <h2 style={{ textAlign: "center", marginTop: "4rem" }}>Loading your bookings...</h2>;
-  }
 
   if (bookings.length === 0) {
     return (
-      <div className="mybookings-container">
+      <div style={{ padding: "50px", textAlign: "center" }}>
         <h1>My Bookings</h1>
-        <p style={{ textAlign: "center", fontSize: "1.4rem", color: "#666", marginTop: "2rem" }}>
-          You haven't booked any cars yet.
-        </p>
+        <p>You have no bookings yet.</p>
       </div>
     );
   }
 
   return (
-    <div className="mybookings-container">
-      <h1>My Bookings ({bookings.length})</h1>
+    <div style={{ padding: "30px" }}>
+      <h1 style={{ textAlign: "center" }}>My Bookings ({bookings.length})</h1>
 
-      <div className="bookings-grid">
-        {bookings.map((booking) => (
-          <div key={booking.id || Date.now()} className="booking-card">
-            <img
-              src={
-                booking.carImage ||
-                booking.image ||
-                "https://via.placeholder.com/400x200/cccccc/666666?text=No+Image"
-              }
-              alt={booking.carName || "Car"}
-              className="booking-img"
-            />
-            <div className="booking-info">
-              <h3>{booking.carName || "Unknown Car"}</h3>
-              <p>
-                <strong>Dates:</strong> {booking.startDate} → {booking.endDate}
-              </p>
-              <p>
-                <strong>Days:</strong> {booking.days || "N/A"}
-              </p>
-              <p className="total">
-                Total: <strong>${booking.total || 0}</strong>
-              </p>
-            </div>
+      <div style={{ display: "grid", gap: "20px", marginTop: "30px" }}>
+        {bookings.map((b) => (
+          <div key={b.id} style={{
+            border: "1px solid #ddd",
+            borderRadius: "10px",
+            padding: "20px",
+            background: "white"
+          }}>
+            {b.carImage && (
+              <img src={b.carImage} alt={b.carName} style={{ width: "100%", borderRadius: "8px", marginBottom: "15px" }} />
+            )}
+            <h3>{b.carName}</h3>
+            <p>Dates: {b.startDate} → {b.endDate}</p>
+            <p>Days: {b.days}</p>
+            <p style={{ fontSize: "1.5rem", color: "blue" }}>
+              Total: <strong>${b.total}</strong>
+            </p>
           </div>
         ))}
       </div>
