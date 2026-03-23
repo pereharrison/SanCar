@@ -1,64 +1,114 @@
 .car-card {
   width: 100%;
   background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border-radius: 16px;          /* slightly smaller radius on mobile feels nicer */
+  overflow: hidden;             /* re-enable — prevents image/content bleed */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);   /* lighter shadow on mobile */
+  transition: all 0.25s ease;   /* slightly faster transition */
   display: flex;
   flex-direction: column;
 }
 
-.car-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+/* Hover only on devices that support hover (pointer: fine) */
+@media (hover: hover) and (pointer: fine) {
+  .car-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  }
 }
 
 .car-card img {
   width: 100%;
-  height: 200px;
+  height: 160px;                /* smaller on mobile — prevents overly tall cards */
   object-fit: cover;
 }
 
 .car-info {
-  padding: 1.5rem;
-  flex-grow: 1;
+  padding: 1.25rem;
+  /* flex-grow: 1; */
   display: flex;
   flex-direction: column;
+  gap: 0.75rem;                 /* consistent spacing between elements */
 }
 
 .car-info h2 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
+  margin: 0;
+  font-size: 1.35rem;           /* smaller heading */
   color: #1f2937;
+  line-height: 1.3;
 }
 
 .price {
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 1.6rem;            /* slightly smaller but still prominent */
+  font-weight: 700;
   color: #1e40af;
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
 }
 
 .price span {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #6b7280;
   font-weight: normal;
 }
 
 .view-details {
   margin-top: auto;
-  padding: 12px;
+  padding: 0.9rem;              /* better touch target ~44–48px */
   background-color: #1e40af;
   color: white;
   text-align: center;
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: 10px;
   font-weight: 600;
-  transition: all 0.2s;
+  font-size: 1rem;              /* readable size */
+  transition: all 0.2s ease;
+  min-height: 44px;             /* minimum touch target height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.view-details:hover {
+.view-details:hover,
+.view-details:focus-visible {
   background-color: #1d4ed8;
-  color: #93c5fd;
+  color: #dbeafe;               /* lighter blue for better contrast */
+  outline: none;
+}
+
+/* ──────────────────────────────────────────────── */
+/* Larger screens (tablet/desktop) — enhance styles */
+/* ──────────────────────────────────────────────── */
+
+@media (max-width: 640px) {     /* sm breakpoint – adjust to your needs (768px?) */
+  .car-card {
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+
+  .car-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .car-card img {
+    height: 200px;              /* original taller image */
+  }
+
+  .car-info {
+    padding: 1.5rem;
+  }
+
+  .car-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .price {
+    font-size: 1.8rem;
+  }
+
+  .view-details {
+    padding: 12px;
+    font-size: 1.05rem;
+  }
 }

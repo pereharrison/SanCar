@@ -1,30 +1,30 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import "../styles/Auth.css"
+import "../styles/Auth.css";
 
-
-function Signin() {
-  const { login } = useContext(AuthContext);
+function SignIn() {
+  const { login } = useContext(AuthContext); // ← adjust to match your context method name if different (e.g. signIn)
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
 
-    // Get all users from localStorage
     const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = users.find(u => u.email === email && u.password === password);
+    const user = users.find((u) => u.email === email && u.password === password);
 
     if (!user) {
-      alert("Wrong email or password!");
+      setError("Invalid email or password");
       return;
     }
 
-    login(user);
-    navigate("/");
+    login(user);           // call context login method
+    navigate("/");         // or "/dashboard", "/home", etc.
   };
 
   return (
@@ -33,13 +33,20 @@ function Signin() {
         <h2>Sign In</h2>
         <p>Welcome back to SanCar Rentals</p>
 
-        <form onSubmit={handleSubmit}>
+        {error && (
+          <p style={{ color: "#dc2626", marginBottom: "1.5rem", fontSize: "1rem" }}>
+            {error}
+          </p>
+        )}
+
+        <form onSubmit={handleSubmit} className="auth-form">
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="auth-input"
           />
           <input
             type="password"
@@ -47,16 +54,19 @@ function Signin() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="auth-input"
           />
-          <button type="submit">Sign In</button>
+          <button type="submit" className="auth-btn">
+            Sign In
+          </button>
         </form>
 
-        <p style={{ marginTop: "20px" }}>
-          No account? <Link to="/signup">Sign Up</Link>
+        <p className="auth-footer">
+          Don't have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </div>
     </div>
   );
 }
 
-export default Signin;
+export default SignIn;

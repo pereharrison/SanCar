@@ -33,5 +33,26 @@
 .back-link { color: color #666; text-decoration: none; }
 
 @media (max-width: 768px) {
-  .car-details-container { grid-template-columns: 1fr; }
+  .car-details-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+  }
+  .car-image img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-details-container {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+  .car-info h1 {
+    font-size: 2rem;
+  }
+  .price {
+    font-size: 1.5rem;
+  }
 }
