@@ -26,8 +26,8 @@ function Navbar() {
       <div className={`links-container ${isOpen ? "open" : ""}`}>
         <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
         <Link to="/cars" onClick={() => setIsOpen(false)}>All Cars</Link>
-        <Link to="/signin" onClick={() => setIsOpen(false)}>Sign In</Link>
-        <Link to="/signup" onClick={() => setIsOpen(false)}>Sign Up</Link>
+        {/* <Link to="/signin" onClick={() => setIsOpen(false)}>Sign In</Link> */}
+        {/* <Link to="/signup" onClick={() => setIsOpen(false)}>Sign Up</Link> */}
         <Link to="/my-bookings">My Bookings</Link>
       </div>
     </nav>
